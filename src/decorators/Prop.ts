@@ -12,6 +12,7 @@ export function Prop(options: PropOptions | Constructor[] | Constructor = {}) {
   return (target: Vue, key: string) => {
     applyMetadata(options, target, key)
     createDecorator((componentOptions, k) => {
+      // 被Prop装饰后，组件选项props配置中将会多出对应配置
       ;(componentOptions.props || ((componentOptions.props = {}) as any))[
         k
       ] = options
